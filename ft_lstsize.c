@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zjaddad <zjaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 23:52:19 by zjaddad           #+#    #+#             */
-/*   Updated: 2022/11/11 18:38:44 by zjaddad          ###   ########.fr       */
+/*   Created: 2023/01/19 20:44:41 by zjaddad           #+#    #+#             */
+/*   Updated: 2023/01/19 22:05:32 by zjaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_bonus.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int ft_lstsize(t_list *lst)
 {
+	t_list	*lent;
 	int		i;
-	int		j;
-	char	*pr;
 
 	i = 0;
-	j = 0;
-	if (!s1 || !s2)
-		return (NULL);
-	pr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!pr)
-		return (NULL);
-	while (s1[i])
+	if (lst)
 	{
-		pr[i] = s1[i];
-		i++;
+		lent = malloc(sizeof(t_list));
+		if (!lent)
+			return (0);
+		lent = lst;
+		while (lent)
+		{
+			lent = lent->next;
+			i++;
+		}
 	}
-	while (s2[j])
-		pr[i++] = s2[j++];
-	
-	pr[i] = '\0';
-	return (pr);
+	return (i);
 }
